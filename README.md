@@ -22,7 +22,7 @@ Para este proyecto he seleccionado como producto para administrar, libros PDF co
 1. Descargar laragon https://laragon.org/download v6.0 ó v.8.6.1
 2. Instalar, tenga en cuenta la ubicación donde lo instaló, dejar en check la opción de crear virtual hosts.
 3. Al terminar la instalación, abrir la carpeta donde se instaló laragon y ubicarse en la carpeta www. 
-4. Pegar los dos proyectos (eltiempo y app-eltiempo) allí.
+4. Pegar los dos proyectos (eltiempo y app-eltiempo) allí y extraerlos, verificar que no queden dentro de subcarpetas y que los nombres sean , eltiempo y app-eltiempo
 5. Abrir la aplicación Laragon.
 6. Activar el servicio de Apache y mysql, si no ve lo switches para activarlo, puede hacer click derecho y activarlos en el menú desplegado.
 
@@ -32,17 +32,20 @@ Para este proyecto he seleccionado como producto para administrar, libros PDF co
     * Password = 
 2. Click en Abrir, se desplegará el cliente. 
 3. En el lado izquierdo aparecerán los schemas.
-4. Click derecho en la zona blanca de los schemas y elegir. crear nuevo > base de datos
-5. nombrar la DB como el_tiempo
+4. Click derecho sobre Laragon.MySQL elegir. crear nuevo > base de datos
+5. nombrar la DB como el_tiempo , collation: utf8mb4_spanish2_ci y aceptar.
 6. Fin.
 
 ### Ejecutar migraciones
 1. En el menú inferior de laragon, elegir la opcion. Terminal. se abrirá una terminal (esta es la que se debe usar siempre, no la nativa del PC) apuntando a la carpeta www.
 2. Escribir el comando, ``` cd eltiempo ```, dar enter, para acceder al proyecto.
+3. Escribir el comando ```composer install``` , dar enter.
+4. Escribir el comando ```composer update``` , dar enter. Este proceso puede demorar algunos minutos, ya que las dependencias no se suben a github.
+5. Intencionalmente se ha subido el archivo .env con los datos de configuración de la app. Verificar que el archivo está. Allí están los datos para conectarse a la DB. Entre otros.
 3. Escribir el comando,
     ```php artisan migrate --seed``` , dar enter
 se crearán las tablas del proyecto automáticamente dentro de la DB el_tiempo y poblará dos tablas, un usuario con email y contraseña y una tabla de categorías.
-    3.1 (opcional) , para rehacer las tablas y agregar de nuevo los datos, escribir en la terminal ```php artisan migrate:fresh --seed```, dar enter.
+* (opcional) , para rehacer las tablas y agregar de nuevo los datos, escribir en la terminal ```php artisan migrate:fresh --seed```, dar enter.
 
 ## Archivos
 1. La aplicación almacenará imágenes y pdfs, para activar la carpeta storage, ejecute este comando ```php artisan storage:link```, dar enter.
